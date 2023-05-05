@@ -18,7 +18,6 @@ jobs:
     - name: Push the Docker image to the Container registry
       run: |
         echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-        # docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
         docker push ghcr.io/${{ github.repository }}:latest
 
   
