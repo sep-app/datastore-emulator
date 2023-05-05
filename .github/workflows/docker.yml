@@ -13,12 +13,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --tag ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
+      run: docker build . --tag ghcr.io/${{ github.repository }}:latest
 
     - name: Push the Docker image to the Container registry
       run: |
-        echo "${{ secrets.GIT_DOCKER_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
         # docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-        docker push ghcr.io/${{ github.actor }}/${{ github.repository }}:latest
+        docker push ghcr.io/${{ github.repository }}:latest
 
   
